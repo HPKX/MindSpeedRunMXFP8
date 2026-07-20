@@ -175,7 +175,7 @@ Expected: 每个关键主题至少命中一次，性能增强顺序和责任归�
 Run:
 
 ```bash
-sed -n '/<!-- SPEECH START -->/,/<!-- SPEECH END -->/p' docs/DeepSeek_V4_MXFP8_Presentation_Script.md | wc -m
+awk '/\*\*讲述：\*\*/ {in_speech=1; next} /\*\*强调：\*\*/ {in_speech=0} in_speech {print}' docs/DeepSeek_V4_MXFP8_Presentation_Script.md | wc -m
 ```
 
 Expected: 输出位于 1800–2400 字符之间。
